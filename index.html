@@ -1,284 +1,186 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Captain Buttons, the Mile High Pirate</title>
-  <meta name="description" content="Captain Buttons is a Colorado-based pirate character and concertina player bringing live, unamplified folk music to public spaces and festivals." />
+
   <style>
     :root{
+      /* Match the dark blue tone you liked */
       --bg: #0b0d10;
-      --card: rgba(255,255,255,0.06);
       --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.72);
-      --line: rgba(255,255,255,0.14);
-      --shadow: 0 10px 30px rgba(0,0,0,0.35);
-      --radius: 18px;
-      --max: 980px;
+      --muted: rgba(255,255,255,0.75);
+      --line: rgba(255,255,255,0.18);
+      --max: 1100px;
     }
 
     *{ box-sizing: border-box; }
     body{
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,0.08), transparent 60%),
-        radial-gradient(900px 500px at 80% 0%, rgba(255,255,255,0.06), transparent 60%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.45;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
-    a{ color: var(--text); text-decoration: none; }
-    a:hover{ text-decoration: underline; }
 
-    /* Full-width banner */
-    .banner{
+    /* HERO */
+    .hero{
       position: relative;
       width: 100%;
-      min-height: 420px;
-      background: #111;
+      min-height: 420px;              /* good desktop presence */
       overflow: hidden;
-      border-bottom: 1px solid var(--line);
+      background: var(--bg);
     }
-    @media (max-width: 860px){
-      .banner{ min-height: 340px; }
-    }
-    .banner img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit: contain;
-      object-position: left center;
+
+    /* The image is a full-bleed layer */
+    .hero img{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      /*
+        KEY BEHAVIOR:
+        - cover fills the banner
+        - object-position anchors LEFT so you are not cropped off the left
+        - and slightly lowers framing so wide screens don’t chop the head
+      */
+      object-fit: cover;
+      object-position: left 35%;
       transform: scale(1.02);
-      filter: saturate(1.05);
     }
-    .banner::after{
+
+    /*
+      A readable “text panel” effect without needing a separate panel:
+      - right side fades into solid dark blue
+      - left stays more transparent so the photo reads naturally
+    */
+    .hero::after{
       content:"";
       position:absolute;
       inset:0;
       background:
-        linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.35)),
-        radial-gradient(900px 400px at 20% 20%, rgba(255,255,255,0.10), transparent 60%);
+        linear-gradient(to right,
+          rgba(11,13,16,0.00) 0%,
+          rgba(11,13,16,0.08) 30%,
+          rgba(11,13,16,0.65) 55%,
+          rgba(11,13,16,0.92) 72%,
+          rgba(11,13,16,1.00) 86%,
+          rgba(11,13,16,1.00) 100%),
+        radial-gradient(900px 420px at 70% 40%,
+          rgba(255,255,255,0.10),
+          transparent 60%);
+      pointer-events: none;
     }
-    .bannerContent{
+
+    /* Content container sits above overlays */
+    .heroContent{
       position: relative;
+      z-index: 1;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 26px 18px 26px;
-      display:flex;
-      align-items:flex-end;
+      height: 100%;
       min-height: inherit;
+      padding: 28px 18px;
+      display: grid;
+      align-items: center;
+
+      /* Push text to the right area */
+      grid-template-columns: 1fr 1.05fr;
+      column-gap: 24px;
     }
-    .bannerText{
-      max-width: 760px;
+
+    /* Empty left column to reserve space for your photo on wide screens */
+    .heroSpacer{ }
+
+    .heroText{
+      max-width: 560px;
+      justify-self: end;
+      text-align: left;
     }
-    .kicker{
-      color: rgba(255,255,255,0.78);
-      font-size: 13px;
-      letter-spacing: 0.35px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    h1{
-      margin: 0 0 10px;
-      font-size: 42px;
+
+    .heroTitle{
+      margin: 0 0 12px;
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-weight: 700;
+      font-size: clamp(32px, 4vw, 56px);
       line-height: 1.05;
       letter-spacing: 0.2px;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.55);
     }
-    @media (max-width: 860px){
-      h1{ font-size: 34px; }
-    }
-    .subtitle{
+
+    .heroRule{
+      width: min(520px, 100%);
+      height: 1px;
+      background: var(--line);
       margin: 0 0 14px;
-      color: rgba(255,255,255,0.82);
-      font-size: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
 
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 22px 18px 56px;
-    }
-
-    .card{
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-    @media (max-width: 860px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    h2{
-      margin: 0 0 10px;
-      font-size: 18px;
-      letter-spacing: 0.2px;
-    }
-    p{ margin: 0 0 10px; color: var(--muted); }
-
-    ul{
+    .heroDesc{
       margin: 0;
-      padding-left: 18px;
       color: var(--muted);
-    }
-    li{ margin: 8px 0; }
-
-    .quote{
-      margin-top: 12px;
-      padding: 12px 12px;
-      border-left: 3px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.04);
-      border-radius: 12px;
-      color: var(--muted);
-      font-size: 14px;
+      font-size: clamp(14px, 1.6vw, 18px);
+      line-height: 1.5;
+      text-shadow: 0 10px 28px rgba(0,0,0,0.45);
     }
 
-    .ctaRow{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .btn{
-      display:inline-block;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.92);
-      font-size: 14px;
-      text-decoration:none;
-    }
-    .btn:hover{ background: rgba(255,255,255,0.12); text-decoration:none; }
-    .btn.primary{
-      background: rgba(255,255,255,0.16);
-      border-color: rgba(255,255,255,0.24);
-    }
-
-    .media{
-      margin-top: 18px;
-    }
-    .videoWrap{
-      margin-top: 10px;
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      overflow: hidden;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: #111;
-    }
-    .videoWrap iframe{
-      width: 100%;
-      height: 100%;
-      border: 0;
+    /*
+      Responsive behavior:
+      On narrow screens, we stack and center text near the bottom,
+      and we re-aim the image slightly so your head stays in frame.
+    */
+    @media (max-width: 900px){
+      .hero{
+        min-height: 420px;
+      }
+      .heroContent{
+        grid-template-columns: 1fr;
+        align-items: end;
+        padding: 22px 16px 26px;
+      }
+      .heroSpacer{ display:none; }
+      .heroText{
+        justify-self: start;
+        max-width: 720px;
+        padding-bottom: 6px;
+      }
+      .hero img{
+        object-position: left 28%;
+      }
+      .hero::after{
+        background:
+          linear-gradient(to top,
+            rgba(11,13,16,0.98) 0%,
+            rgba(11,13,16,0.72) 35%,
+            rgba(11,13,16,0.20) 70%,
+            rgba(11,13,16,0.10) 100%);
+      }
     }
 
-    .footer{
-      margin-top: 22px;
-      border-top: 1px solid var(--line);
-      padding-top: 16px;
-      color: var(--muted);
-      font-size: 14px;
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: space-between;
+    /* Very short screens: reduce height so it doesn't feel cramped */
+    @media (max-height: 620px){
+      .hero{ min-height: 340px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- FULL-WIDTH BANNER -->
-  <header class="banner">
-    <!-- Replace with your hero photo -->
-    <img src="/assets/hero.png" alt="Captain Buttons performing on concertina" />
-    <div class="bannerContent">
-      <div class="bannerText">
-        <div class="kicker">Live, unamplified street performance</div>
-        <h1>Captain Buttons, the Mile High Pirate</h1>
-        <p class="subtitle">Traditional folk tunes, sea songs, jigs, and polkas on concertina. Colorado-based and family-friendly.</p>
-        <div class="ctaRow">
-          <a class="btn primary" href="#video">Watch a short clip</a>
-          <a class="btn" href="#contact">Contact</a>
-        </div>
+  <header class="hero">
+    <img src="assets/hero.png" alt="Captain Buttons holding a concertina in pirate attire" />
+    <div class="heroContent">
+      <div class="heroSpacer"></div>
+
+      <div class="heroText">
+        <h1 class="heroTitle">Captain Buttons,<br />The Mile High Pirate</h1>
+        <div class="heroRule"></div>
+        <p class="heroDesc">
+          Live, unamplified folk music on concertina. Traditional jigs, polkas, and sea tunes,
+          performed with a playful mile-high pirate flair.
+        </p>
       </div>
     </div>
   </header>
-
-  <main class="wrap">
-    <section class="grid">
-      <div class="card">
-        <h2>About</h2>
-        <p>
-          Captain Buttons is a Colorado-based pirate character and concertina player bringing lively traditional tunes to public spaces and community events.
-          The act blends maritime flair with the playful irony of being landlocked and mile-high.
-        </p>
-        <p>
-          Performances are designed to be welcoming and low-impact: short sets, unamplified sound, and a friendly presence that fits pedestrian environments.
-        </p>
-        <div class="quote">“This music is meant for human ears and eyes.”</div>
-      </div>
-
-      <div class="card">
-        <h2>What to expect</h2>
-        <ul>
-          <li>Unamplified acoustic music (concertina)</li>
-          <li>Traditional jigs and polkas, sea tunes, and folk melodies</li>
-          <li>Family-friendly, approachable pirate character</li>
-          <li>Short sets suitable for festivals and strolling crowds</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="video" class="card media">
-      <h2>Video</h2>
-      <p>Swap the embed link below with your 45–90 second application clip (YouTube or Vimeo).</p>
-      <div class="videoWrap" aria-label="Performance video">
-        <!-- Replace the src with your embed URL -->
-        <iframe
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          title="Captain Buttons performance video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </section>
-
-    <section id="contact" class="grid" style="margin-top:18px;">
-      <div class="card">
-        <h2>Contact</h2>
-        <p>
-          For performer network inquiries, festivals, and community events:
-          <br />
-          <strong><a href="mailto:captainbuttons@captainbuttons.com">captainbuttons@captainbuttons.com</a></strong>
-        </p>
-        <p style="margin-top:10px;">Colorado, USA</p>
-      </div>
-
-      <div class="card">
-        <h2>Availability</h2>
-        <p>
-          Flexible, low-impact setup. Designed for pedestrian areas and outdoor events. No amplification.
-        </p>
-      </div>
-    </section>
-
-    <div class="footer">
-      <div>© <span id="y"></span> Captain Buttons</div>
-      <div><a href="#video">Video</a> · <a href="#contact">Contact</a></div>
-    </div>
-  </main>
-
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>

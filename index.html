@@ -79,12 +79,30 @@
         }
 
         .banner-rule{
+          position: relative;
           width: 520px;
           max-width: 90%;
-          height: 1px;
-          background: rgba(255,255,255,0.15);
+          height: 2px;
           margin: 22px 0 18px 0;
+          background: linear-gradient(
+            90deg,
+            rgba(255,255,255,0.00) 0%,
+            rgba(255,255,255,0.18) 20%,
+            rgba(255,255,255,0.35) 50%,
+            rgba(255,255,255,0.18) 80%,
+            rgba(255,255,255,0.00) 100%
+          );
         }
+        
+        .banner-rule::after{
+          content:"";
+          position: absolute;
+          inset: 0;
+          background: inherit;
+          filter: blur(2px);
+          opacity: 0.6;
+        }
+
 
         .banner-cta {
               margin-top: 35px;

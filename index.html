@@ -30,6 +30,7 @@
           margin: 0 auto;
           justify-content: center;
           align-items: flex-start; /* important (fixes the “gap above photo”) */
+          
         }
         
         .banner-inner{
@@ -38,7 +39,7 @@
             justify-content: center;
             gap: 0;                   /* we’ll control spacing via overlap */
             width: 100%;
-            transform: translateX(calc(var(--overlap) / -2));
+            transform: translateX(calc(clamp(0px, var(--overlap), 260px) / -2));
         }
 
         .banner-image{
@@ -46,6 +47,7 @@
           margin-right: calc(var(--overlap) * -1);
           position: relative;
           z-index: 1;
+          margin-right: calc(clamp(0px, var(--overlap), 260px) * -1);
         }
 
         .banner-image img {

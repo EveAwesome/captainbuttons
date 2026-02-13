@@ -161,7 +161,7 @@
         @media (max-width: 1024px) {
             :root { --overlap: 0px }
             .banner {
-                flex-direction: column;
+
                 width: 100%;
                 padding: 0px 18px;
                 gap: 40px;
@@ -176,6 +176,8 @@
               transform: none;
               align-items: center;
               gap: 40px;
+              .banner-inner { flex-direction: column; }
+
             }
             
             .banner-image{

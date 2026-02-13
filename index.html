@@ -150,16 +150,6 @@
         }
     </style>
 </head>
-
-<script>
-  const user = "ahoy";
-  const domain = "captainbuttons.com";
-  const email = user + "@" + domain;
-
-  const button = document.getElementById("contact-button");
-  button.href = "mailto:" + email;
-  button.textContent = "Contact the Captain";
-</script>
     
 <body>
     <section class="banner">
@@ -175,7 +165,16 @@
             </div>
         </div>
     </section>
-    <p id="contact-email"></p>
 
+
+    <script>
+      const user = "ahoy";
+      const domain = "captainbuttons.com";
+      const email = user + "@" + domain;
+    
+      const button = document.getElementById("contact-button");
+      button.href = "mailto:" + email;
+      button.textContent = "Contact the Captain";
+    </script>
 </body>
 </html>

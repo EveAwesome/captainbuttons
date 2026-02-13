@@ -132,6 +132,16 @@
         }
     </style>
 </head>
+
+<script>
+  const user = "ahoy";
+  const domain = "captainbuttons.com";
+  const email = user + "@" + domain;
+
+  const emailElement = document.getElementById("contact-email");
+  emailElement.innerHTML = `<a href="mailto:${email}">${email}</a>`;
+</script>
+    
 <body>
     <section class="banner">
         <div class="banner-image">
@@ -150,5 +160,7 @@
             </p>
         </div>
     </section>
+    <p id="contact-email"></p>
+
 </body>
 </html>

@@ -1,5 +1,137 @@
-<style>
-  .banner {
-    padding: 0px 60px;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Garamond', serif;
+            background-color: #0a0d17;
+        }
+
+        .banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            padding: 80px 60px;
+            background-color: #0a0d17;
+            min-height: 600px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .banner-image {
+            flex: 0 0 45%;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .banner-content {
+            flex: 1;
+            color: #ffffff;
+        }
+
+        .banner-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+
+        .banner-subtitle {
+            font-size: 1.3rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .banner-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+
+        .banner-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #b0b0b0;
+            border-left: 4px solid #d4af37;
+            padding-left: 25px;
+            margin-top: 40px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 1024px) {
+            .banner {
+                flex-direction: column;
+                padding: 0px 40px;
+                gap: 40px;
+            }
+
+            .banner-image {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .banner-title {
+                font-size: 2.8rem;
+            }
+
+            .banner-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .banner-content {
+                text-align: center;
+            }
+
+            .banner-quote {
+                border-left: none;
+                padding-left: 0;
+                border-top: 2px solid #d4af37;
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="banner">
+        <div class="banner-image">
+            <img src="your-photo.jpg" alt="Your Name">
+        </div>
+        <div class="banner-content">
+            <h1 class="banner-title">Your Title Here</h1>
+            <p class="banner-subtitle">Your Subtitle</p>
+            <p class="banner-text">
+                Welcome to your site. Share your story, your passion, and what makes you unique. 
+                This section introduces visitors to who you are and what you're all about.
+            </p>
+            <p class="banner-quote">
+                "Add your inspiring quote or tagline here."
+            </p>
+        </div>
+    </section>
+</body>
+</html>

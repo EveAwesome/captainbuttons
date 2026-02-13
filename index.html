@@ -1,11 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Captain Buttons, the Mile High Pirate</title>
+  <meta name="description" content="Captain Buttons is a Colorado-based pirate character and concertina player bringing live, unamplified folk music to public spaces and festivals." />
+  <style>
+    :root{
+      --bg: #0b0d10;
+      --card: rgba(255,255,255,0.06);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --line: rgba(255,255,255,0.14);
+      --accent: rgba(255,255,255,0.92);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --max: 980px;
+    }
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,0.08), transparent 60%),
+                  radial-gradient(900px 500px at 80% 0%, rgba(255,255,255,0.06), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 22px 18px 56px; }
+
+    .nav{
+      display:flex; gap:14px; align-items:center; justify-content:space-between;
+      padding: 10px 0 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+    .nav .brand{
+      font-weight: 650;
+      letter-spacing: 0.2px;
+    }
+    .nav .links{ display:flex; gap:14px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+    .nav .links a{ color: var(--muted); }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+    @media (max-width: 860px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+    .heroCard{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--card);
+    }
+    .heroImg{
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display:block;
+      background: #111;
+    }
+    @media (max-width: 860px){
+      .heroImg{ height: 300px; }
+    }
+
+    .heroText{
+      padding: 16px 16px 18px;
+      border-top: 1px solid var(--line);
+    }
+    .kicker{
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+    }
+    h1{
+      margin: 10px 0 8px;
+      font-size: 34px;
+      line-height: 1.1;
+      letter-spacing: 0.2px;
+    }
+    .tagline{
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .ctaRow{
+      display:flex; gap:10px; flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .btn{
+      display:inline-block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-size: 14px;
+      text-decoration:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.10); text-decoration:none; }
+    .btn.primary{
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    .side{
+      padding: 16px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .side h2{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+    }
+    .side p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pillRow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 22px;
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+    }
+    .card p{ margin: 0 0 10px; color: var(--muted); }
+    ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    li{ margin: 8px 0; }
+
+    .quote{
+      margin-top: 12px;
+      padding: 12px 12px;
+      border-left: 3px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .media{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 860px){
+      .media{ grid-template-columns: 1fr; }
+    }
+    .videoWrap{
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #111;
+    }
+    .videoWrap iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .gallery{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .gallery img{
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #111;
+    }
+
+    .footer{
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Hello World!</h1>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">Captain Buttons</div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#media">Video</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="heroCard">
+        <img class="heroImg" src="assets/hero.jpg" alt="Captain Buttons, the Mile High Pirate" />
+        <div class="heroText">
+          <div class="kicker">Live, unamplified street performance</div>
+          <h1>Captain Buttons, the Mile High Pirate</h1>
+          <p class="tagline">Traditional folk tunes, sea songs, jigs, and polkas on concertina. Colorado-based, family-friendly, and built for strolling audiences.</p>
+          <div class="ctaRow">
+            <a class="btn primary" href="#media">Watch a short clip</a>
+            <a class="btn" href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="heroCard side">
+        <h2>What this is</h2>
+        <p>A roaming pirate musician bringing old-world charm to the High Plains with a small, portable acoustic setup.</p>
+        <div class="pillRow">
+          <span class="pill">Concertina</span>
+          <span class="pill">Folk</span>
+          <span class="pill">Sea tunes</span>
+          <span class="pill">Jigs</span>
+          <span class="pill">Polkas</span>
+          <span class="pill">Family-friendly</span>
+          <span class="pill">No amplification</span>
+        </div>
+
+        <div class="quote">
+          “This music is meant for human ears and eyes.”
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="grid">
+      <div class="card">
+        <h3>About Captain Buttons</h3>
+        <p>
+          Captain Buttons is a Colorado-based pirate character and concertina player who brings lively traditional tunes to public spaces and community events.
+          The act blends maritime flair with the playful irony of being landlocked and mile-high.
+        </p>
+        <p>
+          Performances are designed to be welcoming and low-impact: short sets, unamplified sound, and a friendly presence that fits pedestrian environments.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>What to expect</h3>
+        <ul>
+          <li>Unamplified acoustic music (concertina)</li>
+          <li>Traditional jigs and polkas, sea tunes, and folk melodies</li>
+          <li>Family-friendly, approachable pirate character</li>
+          <li>Short sets suitable for festivals and strolling crowds</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="media" class="media">
+      <div class="card">
+        <h3>Video</h3>
+        <p>Replace the placeholder below with a YouTube or Vimeo embed when you have a short clip ready.</p>
+
+        <div class="videoWrap" aria-label="Performance video">
+          <!-- Replace the src with your embed URL -->
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Captain Buttons performance video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Photos</h3>
+        <p>Add 2–4 photos to show the look of the act in public space.</p>
+        <div class="gallery">
+          <img src="assets/photo1.jpg" alt="Captain Buttons photo 1" />
+          <img src="assets/photo2.jpg" alt="Captain Buttons photo 2" />
+          <img src="assets/photo3.jpg" alt="Captain Buttons photo 3" />
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="grid">
+      <div class="card">
+        <h3>Contact</h3>
+        <p>
+          For performer network inquiries, festivals, and community events:
+          <br />
+          <strong><a href="mailto:captainbuttons@captainbuttons.com">captainbuttons@captainbuttons.com</a></strong>
+        </p>
+        <p style="margin-top:10px;">Colorado, USA</p>
+      </div>
+
+      <div class="card">
+        <h3>Availability</h3>
+        <p>
+          Captain Buttons is well suited to pedestrian areas, outdoor events, and short festival sets.
+          Flexible, low-impact setup. No amplification.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="y"></span> Captain Buttons</div>
+      <div><a href="#about">About</a> · <a href="#media">Video</a> · <a href="#contact">Contact</a></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+

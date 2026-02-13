@@ -23,7 +23,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 60px;
+            gap: 32px;
             padding: 0px 60px;
             background-color: #0a0d17;
             min-height: 600px;
@@ -32,7 +32,7 @@
         }
 
         .banner-image {
-            flex: 0 0 45%;
+            flex: 0 0 42%;
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -47,6 +47,10 @@
 
         .banner-content {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;     /* centers subtitle/button block */
+            text-align: center;
         }
 
         .banner-title {
@@ -54,7 +58,7 @@
           font-size: 4rem;
           font-weight: 700;
           line-height: 0.95;
-          margin-bottom: 15px;
+          margin-bottom: 6px;
           letter-spacing: 0px;
         }
         
@@ -63,7 +67,7 @@
           display: inline-block;
           font-size: 3rem;
           padding-left: 2.5ch; /* tweak: 0.5ch–2.5ch */
-          margin-bottom: 15px;
+          margin-bottom: 18px;
         }
 
         .banner-subtitle {
@@ -72,14 +76,20 @@
           color: rgba(243, 242, 234, 0.85);
           margin: 25px 0 35px 0;
           letter-spacing: 0.3px;
-          padding-top: 20px;
-          border-top: 1px solid rgba(255,255,255,0.15);
         }
 
-                    .banner-cta {
+        .banner-rule{
+          width: 520px;
+          max-width: 90%;
+          height: 1px;
+          background: rgba(255,255,255,0.15);
+          margin: 22px 0 18px 0;
+        }
+
+        .banner-cta {
               margin-top: 35px;
               text-align: center;
-            }
+        }
             
             .contact-button {
               display: inline-block;
@@ -159,6 +169,8 @@
         <div class="banner-content">
             <h1 class="banner-title">Captain Buttons</h1>
             <h1 class="banner-title-line2">the Mile High Pirate</h1>
+            <div class="banner-rule"></div>
+
             <p class="banner-subtitle">Live, open-air concertina tunes for all to enjoy</p>
             <div class="banner-cta">
                   <a id="contact-button" class="contact-button"></a>

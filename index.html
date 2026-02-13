@@ -76,23 +76,7 @@
           border-top: 1px solid rgba(255,255,255,0.15);
         }
 
-        .banner-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #e0e0e0;
-            max-width: 500px;
-            margin-bottom: 40px;
-        }
 
-        .banner-quote {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: #b0b0b0;
-            border-left: 4px solid #d4af37;
-            padding-left: 25px;
-            margin-top: 40px;
-            line-height: 1.8;
-        }
 
         @media (max-width: 1024px) {
             .banner {
@@ -122,13 +106,45 @@
             .banner-content {
                 text-align: center;
             }
-
-            .banner-quote {
-                border-left: none;
-                padding-left: 0;
-                border-top: 2px solid #d4af37;
-                padding-top: 20px;
+            .banner-cta {
+              margin-top: 35px;
+              text-align: center;
             }
+            
+            .contact-button {
+              display: inline-block;
+              padding: 14px 34px;
+              font-size: 1.05rem;
+              font-weight: 600;
+              letter-spacing: 0.5px;
+              text-decoration: none;
+              color: #f5f3ea;
+            
+              background: linear-gradient(180deg, #8e2f23 0%, #6e2218 100%);
+              border: 1px solid rgba(255,255,255,0.15);
+              border-radius: 6px;
+            
+              box-shadow:
+                0 8px 20px rgba(0,0,0,0.45),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+            
+              transition: all 0.2s ease;
+            }
+            
+            .contact-button:hover {
+              transform: translateY(-2px);
+              box-shadow:
+                0 12px 28px rgba(0,0,0,0.55),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+              background: linear-gradient(180deg, #a83a2a 0%, #7a281c 100%);
+            }
+            
+            .contact-button:active {
+              transform: translateY(0);
+            }
+
+
+
         }
     </style>
 </head>
@@ -138,8 +154,9 @@
   const domain = "captainbuttons.com";
   const email = user + "@" + domain;
 
-  const emailElement = document.getElementById("contact-email");
-  emailElement.innerHTML = `<a href="mailto:${email}">${email}</a>`;
+  const button = document.getElementById("contact-button");
+  button.href = "mailto:" + email;
+  button.textContent = "Contact the Captain";
 </script>
     
 <body>
@@ -151,13 +168,9 @@
             <h1 class="banner-title">Captain Buttons</h1>
             <h1 class="banner-title-line2">the Mile High Pirate</h1>
             <p class="banner-subtitle">Live, open-air concertina tunes for all to enjoy</p>
-            <p class="banner-text">
-                Welcome to your site. Share your story, your passion, and what makes you unique. 
-                This section introduces visitors to who you are and what you're all about.
-            </p>
-            <p class="banner-quote">
-                "Add your inspiring quote or tagline here."
-            </p>
+            <div class="banner-cta">
+                  <a id="contact-button" class="contact-button"></a>
+            </div>
         </div>
     </section>
     <p id="contact-email"></p>

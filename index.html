@@ -7,12 +7,11 @@
 
   <style>
     :root{
-      /* Match the dark blue tone you liked */
       --bg: #0b0d10;
       --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.75);
+      --muted: rgba(255,255,255,0.78);
       --line: rgba(255,255,255,0.18);
-      --max: 1100px;
+      --max: 1120px;
     }
 
     *{ box-sizing: border-box; }
@@ -27,34 +26,31 @@
     .hero{
       position: relative;
       width: 100%;
-      min-height: 420px;              /* good desktop presence */
+      /* Height tuned for a banner feel while keeping room for full figure */
+      min-height: clamp(360px, 46vw, 520px);
       overflow: hidden;
       background: var(--bg);
     }
 
-    /* The image is a full-bleed layer */
+    /*
+      IMPORTANT CHANGE:
+      Use object-fit: contain to avoid vertical cropping (keeps concertina visible).
+      Image will be letterboxed against the page background if needed.
+    */
     .hero img{
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       display: block;
-
-      /*
-        KEY BEHAVIOR:
-        - cover fills the banner
-        - object-position anchors LEFT so you are not cropped off the left
-        - and slightly lowers framing so wide screens don’t chop the head
-      */
-      object-fit: cover;
-      object-position: left 35%;
-      transform: scale(1.02);
+      object-fit: contain;
+      object-position: left center; /* anchors you to the left */
+      background: var(--bg);
     }
 
     /*
-      A readable “text panel” effect without needing a separate panel:
-      - right side fades into solid dark blue
-      - left stays more transparent so the photo reads naturally
+      Right-side fade so the text reads like the concept.
+      This works even with letterboxing from object-fit: contain.
     */
     .hero::after{
       content:"";
@@ -63,18 +59,17 @@
       background:
         linear-gradient(to right,
           rgba(11,13,16,0.00) 0%,
-          rgba(11,13,16,0.08) 30%,
-          rgba(11,13,16,0.65) 55%,
-          rgba(11,13,16,0.92) 72%,
-          rgba(11,13,16,1.00) 86%,
+          rgba(11,13,16,0.06) 28%,
+          rgba(11,13,16,0.55) 52%,
+          rgba(11,13,16,0.88) 70%,
+          rgba(11,13,16,1.00) 84%,
           rgba(11,13,16,1.00) 100%),
-        radial-gradient(900px 420px at 70% 40%,
+        radial-gradient(900px 420px at 70% 35%,
           rgba(255,255,255,0.10),
-          transparent 60%);
+          transparent 62%);
       pointer-events: none;
     }
 
-    /* Content container sits above overlays */
     .heroContent{
       position: relative;
       z-index: 1;
@@ -82,86 +77,84 @@
       margin: 0 auto;
       height: 100%;
       min-height: inherit;
-      padding: 28px 18px;
+      padding: 26px 18px;
       display: grid;
+      grid-template-columns: 1fr 1.05fr; /* left “space” + right text */
       align-items: center;
-
-      /* Push text to the right area */
-      grid-template-columns: 1fr 1.05fr;
-      column-gap: 24px;
+      column-gap: 28px;
     }
 
-    /* Empty left column to reserve space for your photo on wide screens */
+    /* reserve space for the figure on wide screens */
     .heroSpacer{ }
 
     .heroText{
-      max-width: 560px;
       justify-self: end;
+      max-width: 600px;
       text-align: left;
     }
 
+    .kicker{
+      margin: 0 0 10px;
+      font-size: 12px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      text-shadow: 0 10px 28px rgba(0,0,0,0.50);
+    }
+
     .heroTitle{
-      margin: 0 0 12px;
+      margin: 0 0 14px;
       font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
       font-weight: 700;
-      font-size: clamp(32px, 4vw, 56px);
-      line-height: 1.05;
+      font-size: clamp(34px, 4.4vw, 60px);
+      line-height: 1.03;
       letter-spacing: 0.2px;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.55);
+      text-shadow: 0 14px 40px rgba(0,0,0,0.60);
     }
 
     .heroRule{
-      width: min(520px, 100%);
+      width: min(560px, 100%);
       height: 1px;
-      background: var(--line);
+      background: rgba(255,255,255,0.16);
       margin: 0 0 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
 
     .heroDesc{
       margin: 0;
-      color: var(--muted);
-      font-size: clamp(14px, 1.6vw, 18px);
-      line-height: 1.5;
-      text-shadow: 0 10px 28px rgba(0,0,0,0.45);
+      color: rgba(255,255,255,0.74);
+      font-size: clamp(14px, 1.55vw, 18px);
+      line-height: 1.55;
+      text-shadow: 0 12px 28px rgba(0,0,0,0.55);
     }
 
     /*
       Responsive behavior:
-      On narrow screens, we stack and center text near the bottom,
-      and we re-aim the image slightly so your head stays in frame.
+      On narrow screens, stack the text lower and switch to a top->bottom gradient.
+      Keep object-fit: contain so we never crop the figure.
     */
     @media (max-width: 900px){
-      .hero{
-        min-height: 420px;
-      }
       .heroContent{
         grid-template-columns: 1fr;
         align-items: end;
-        padding: 22px 16px 26px;
+        padding: 20px 16px 24px;
       }
       .heroSpacer{ display:none; }
       .heroText{
         justify-self: start;
-        max-width: 720px;
-        padding-bottom: 6px;
-      }
-      .hero img{
-        object-position: left 28%;
+        max-width: 760px;
       }
       .hero::after{
         background:
           linear-gradient(to top,
             rgba(11,13,16,0.98) 0%,
-            rgba(11,13,16,0.72) 35%,
-            rgba(11,13,16,0.20) 70%,
-            rgba(11,13,16,0.10) 100%);
+            rgba(11,13,16,0.78) 40%,
+            rgba(11,13,16,0.24) 78%,
+            rgba(11,13,16,0.12) 100%);
       }
-    }
-
-    /* Very short screens: reduce height so it doesn't feel cramped */
-    @media (max-height: 620px){
-      .hero{ min-height: 340px; }
+      .kicker{
+        letter-spacing: 0.28em;
+      }
     }
   </style>
 </head>
@@ -169,15 +162,23 @@
 <body>
   <header class="hero">
     <img src="assets/hero.png" alt="Captain Buttons holding a concertina in pirate attire" />
+
     <div class="heroContent">
       <div class="heroSpacer"></div>
 
       <div class="heroText">
-        <h1 class="heroTitle">Captain Buttons,<br />The Mile High Pirate</h1>
+        <p class="kicker">Live, acoustic street performance</p>
+
+        <h1 class="heroTitle">
+          Captain Buttons,<br />
+          The Mile High Pirate
+        </h1>
+
         <div class="heroRule"></div>
+
         <p class="heroDesc">
-          Live, unamplified folk music on concertina. Traditional jigs, polkas, and sea tunes,
-          performed with a playful mile-high pirate flair.
+          Live, acoustic folk music on concertina. Traditional jigs, polkas,
+          and sea tunes, performed with a playful mile-high pirate flair.
         </p>
       </div>
     </div>

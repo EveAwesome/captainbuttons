@@ -215,6 +215,90 @@
               color: rgba(243,242,234,0.80);
 
             }
+        .footer-wrap{
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 40px 60px 30px;
+          text-align: center;
+        }
+        
+        .footer-rule{
+          position: relative;
+          width: 820px;
+          max-width: 92%;
+          height: 2px;
+          margin: 18px auto;
+          background: linear-gradient(
+            90deg,
+            rgba(255,255,255,0.00) 0%,
+            rgba(255,255,255,0.16) 20%,
+            rgba(255,255,255,0.32) 50%,
+            rgba(255,255,255,0.16) 80%,
+            rgba(255,255,255,0.00) 100%
+          );
+        }
+        
+        .footer-rule::after{
+          content:"";
+          position: absolute;
+          inset: 0;
+          background: inherit;
+          filter: blur(2px);
+          opacity: 0.55;
+        }
+        
+        .footer-rule-half{
+          width: 520px; /* about half-width relative to the full rule */
+        }
+        
+        .footer-location{
+          font-family: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+          font-size: 1.1rem;
+          letter-spacing: 0.3px;
+          color: rgba(243,242,234,0.85);
+          margin-top: 16px;
+        }
+        
+        .footer-email{
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        
+        .footer-email a{
+          font-family: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+          font-size: 1.15rem;
+          font-weight: 600;
+          text-decoration: none;
+          color: rgba(243,242,234,0.92);
+          border-bottom: 1px solid rgba(255,255,255,0.25);
+          padding-bottom: 2px;
+          transition: border-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .footer-email a:hover{
+          color: rgba(243,242,234,1);
+          border-bottom-color: rgba(255,255,255,0.55);
+        }
+        
+        .footer-support{
+          font-family: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+          font-size: 1.05rem;
+          color: rgba(243,242,234,0.80);
+          margin: 12px 0;
+        }
+        
+        .footer-venmo{
+          font-weight: 600;
+          color: rgba(243,242,234,0.90);
+        }
+        
+        .footer-copyright{
+          font-family: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+          font-size: 0.95rem;
+          color: rgba(243,242,234,0.60);
+          margin-top: 10px;
+        }
+
 
 
 
@@ -282,6 +366,16 @@
             .card-text{
               font-size: 1.05rem;
             }
+            @media (max-width: 1024px){
+              .footer-wrap{
+                padding: 34px 18px 26px;
+              }
+            
+              .footer-email a{
+                font-size: 1.05rem;
+              }
+}
+
 
             
         }
@@ -317,17 +411,50 @@
         </p>
       </div>
     </section>
+    <section class="footer-wrap">
+  <div class="footer-rule"></div>
+
+  <p class="footer-location">Based in Denver, Colorado</p>
+
+  <p class="footer-email">
+    <a id="footer-email-link" href="#" rel="nofollow noopener"></a>
+  </p>
+
+  <div class="footer-rule footer-rule-half"></div>
+
+  <p class="footer-support">
+    Support the Voyage — <span class="footer-venmo">Venmo @CaptainButtons</span>
+  </p>
+
+  <div class="footer-rule"></div>
+
+  <p class="footer-copyright">© 2026 Captain Buttons</p>
+</section>
 
 
 
-    <script>
-      const user = "ahoy";
-      const domain = "captainbuttons.com";
-      const email = user + "@" + domain;
-    
-      const button = document.getElementById("contact-button");
-      button.href = "mailto:" + email;
-      button.textContent = "Contact the Captain";
-    </script>
+
+<script>
+  (function () {
+    const user = "ahoy";
+    const domain = "captainbuttons.com";
+    const email = user + "@" + domain;
+
+    // Header button (mailto)
+    const contactButton = document.getElementById("contact-button");
+    if (contactButton) {
+      contactButton.href = "mailto:" + email;
+      contactButton.textContent = "Contact the Captain";
+    }
+
+    // Footer email link (text)
+    const footerEmail = document.getElementById("footer-email-link");
+    if (footerEmail) {
+      footerEmail.href = "mailto:" + email;
+      footerEmail.textContent = email;
+    }
+  })();
+</script>
+
 </body>
 </html>

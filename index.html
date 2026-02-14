@@ -260,7 +260,7 @@
           width: 520px; /* about half-width relative to the full rule */
         }
         
-        .footer-location{
+        .footer-contact-line{
           font-family: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
           font-size: 1.1rem;
           letter-spacing: 0.3px;
@@ -268,26 +268,22 @@
           margin-top: 16px;
         }
         
-        .footer-email{
-          margin-top: 10px;
-          margin-bottom: 10px;
-        }
-        
-        .footer-email a{
-          font-family: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-          font-size: 1.15rem;
-          font-weight: 600;
-          text-decoration: none;
+        .footer-contact-line a{
           color: rgba(243,242,234,0.92);
-          border-bottom: 1px solid rgba(255,255,255,0.25);
-          padding-bottom: 2px;
-          transition: border-color 0.2s ease, color 0.2s ease;
+          text-decoration: none; /* removes underline */
+          font-weight: 600;
+          transition: color 0.2s ease;
         }
         
-        .footer-email a:hover{
+        .footer-contact-line a:hover{
           color: rgba(243,242,234,1);
-          border-bottom-color: rgba(255,255,255,0.55);
         }
+        
+        .footer-separator{
+          margin: 0 8px;
+          opacity: 0.6;
+        }
+
         
         .footer-support{
           font-family: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -375,7 +371,7 @@
             .card-text{
               font-size: 1.05rem;
             }
-            @media (max-width: 1024px){
+
               .footer-wrap{
                 padding: 34px 18px 26px;
               }
@@ -383,9 +379,17 @@
               .footer-email a{
                 font-size: 1.05rem;
               }
+
+            .footer-contact-line{
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+              }
+
+              .footer-separator{
+                display: none;
+              }
 }
-
-
             
         }
 

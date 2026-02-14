@@ -159,66 +159,54 @@
 
 
         @media (max-width: 1024px) {
-            :root { --overlap: 0px }
-            .banner {
 
-                width: 100%;
-                padding: 0px 18px;
-                gap: 40px;
-            }
-
-            .banner-title-line2{
-                padding-left: 0.0ch; /* or 0 if you want it centered/flush on mobile */
-            }
-
-            .banner-inner{
-              width: 100%;
-              transform: none;
-              align-items: center;
-              gap: 40px;
-              .banner-inner { flex-direction: column; }
-
-            }
-            
-            .banner-image{
-              margin-right: 0;
-              flex: 0 0 auto;
-              width: 100%;
-              max-width: 520px;
-            }
-
-
-              .banner-title {
-                font-size: 2.4rem;     /* adjust to taste */
-                line-height: 1.0;
-              }
-            
-              .banner-title-line2 {
-                font-size: 2.0rem;     /* smaller than line 1 */
-                padding-left: 0;       /* no indent on mobile */
-                margin-bottom: 14px;
-                max-width: 100%;
-                white-space: normal;   /* allow wrapping */
-                overflow-wrap: anywhere;
-            }
-            
-
-
-
-            .banner-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .banner-content {
-                padding-top: 0px;
-                text-align: center;
-                margin-left: 0;
-            }
-
-
-
-
+        
+          /* Force stacked layout and cancel ALL overlap tricks */
+          .banner-inner{
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+            width: 100%;
+            transform: none !important;
+          }
+        
+          .banner-image{
+            flex: 0 0 auto;
+            width: min(92vw, 520px);
+            max-width: none;
+            margin-right: 0 !important;  /* cancel overlap */
+            margin-left: 0 !important;
+          }
+        
+          .banner-content{
+            width: 100%;
+            margin-left: 0 !important;   /* just in case */
+            padding-top: 14px;           /* brings title higher */
+          }
+        
+          .banner-title{
+            font-size: 2.2rem;
+            line-height: 1.05;
+          }
+        
+          .banner-title-line2{
+            font-size: 1.8rem;           /* smaller than line 1 */
+            padding-left: 0;
+            white-space: normal;
+            overflow-wrap: anywhere;
+          }
+        
+          .banner-rule{
+            width: min(92vw, 520px);
+          }
+        
+          .banner-subtitle{
+            font-size: 1.05rem;
+            margin: 14px 0 18px 0;
+            padding: 0 12px;             /* keeps text off the edges */
+          }
         }
+
     </style>
 </head>
     

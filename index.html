@@ -95,8 +95,14 @@
             margin:  0;
             letter-spacing: 0.2px;
         }
+        .banner-text-wrap{
+          display: inline-block;     /* shrink to content width */
+          max-width: 100%;
+        }
+
 
         .banner-subtitle-block{
+          width: 100%
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -405,21 +411,28 @@
                 <img src="/assets/hero_blue.png" alt="Captain Buttons Playing the Concertina">
             </div>
             <div class="banner-content">
-                <h1 class="banner-title">Captain Buttons</h1>
-                <h1 class="banner-title-line2">the Mile High Pirate</h1>
-                <div class="banner-subtitle-block">
-                    <div class="banner-rule"></div>
-                    <p class="banner-subtitle">
-                        LIVE, OPEN-AIR CONCERTINA PERFORMANCE
-                        IN PUBLIC SPACES AROUND DENVER
-                    </p>
-                    <div class="banner-rule"></div>
-                </div>
 
-                <div class="banner-cta">
-                      <a id="contact-button" class="contact-button"></a>
+                <div class="banner-text-wrap">
+                    <h1 class="banner-title">Captain Buttons</h1>
+                    <h1 class="banner-title-line2">the Mile High Pirate</h1>
+            
+                    <div class="banner-subtitle-block">
+                        <div class="banner-rule"></div>
+            
+                        <p class="banner-subtitle">
+                            LIVE, OPEN-AIR CONCERTINA PERFORMANCE IN PUBLIC SPACES AROUND DENVER
+                        </p>
+            
+                        <div class="banner-rule"></div>
+                    </div>
                 </div>
+            
+                <div class="banner-cta">
+                    <a id="contact-button" class="contact-button"></a>
+                </div>
+            
             </div>
+
         </div>
     </section>
     <section class="section-wrap">
